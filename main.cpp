@@ -1,5 +1,7 @@
 #include <iostream>
+#include <cstdint>
 #include "Bitmap.h"
+#include "Mandelbrot.h"
 using namespace std;
 using namespace fgias;
 
@@ -10,10 +12,17 @@ int main() {
 
     Bitmap bitmap(WIDTH, HEIGHT);
 
-    bitmap.setPixel(WIDTH/5, HEIGHT/5, 255, 255, 255);
-    for (int i=0; i<WIDTH; i++) {
-        for (int j=0; j<HEIGHT; j++) {
-            bitmap.setPixel(i, j, 255, 0, 0);
+    for (int y=0; y<HEIGHT; y++) {
+        for (int x=0; x<WIDTH; x++) {
+            double xFractal = (x - WIDTH/2) * 2.0/WIDTH;
+            double yFractal = (y - HEIGHT/2) * 2.0/HEIGHT;
+            
+            int iters = Mandelbrot::getIterations(xFractal, yFractal);
+            cout << iters << endl;
+
+            uint8_t red = ((double)iters/Mandelbrot::MAX_ITERATIONS * 256);
+
+            bitmap.setPixel(x, y, red, red, red);
         }
     }
 
@@ -28,7 +37,7 @@ int main() {
 /* 
 
 clear; 
-g++ -std=c++11 main.cpp Bitmap.cpp -o exec; 
+g++ -std=c++11 main.cpp Mandelbrot.cpp Bitmap.cpp -o exec; 
 ./exec
 
 */
