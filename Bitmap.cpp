@@ -49,7 +49,14 @@ bool Bitmap::write(string filename) {
 }
 
 void Bitmap::setPixel(int x, int y, uint8_t red, uint8_t green, uint8_t blue) {
-    
+    uint8_t* pPixel = _pPixels.get();
+
+    pPixel += (y*3) * _width + (x*3);
+
+    pPixel[0] = blue;
+    pPixel[1] = green;
+    pPixel[2] = red; // bitmap is a little-endian file format
+
 }
 
 
