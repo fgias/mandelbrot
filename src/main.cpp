@@ -37,7 +37,7 @@ int main() {
 /* 
 
 clear; 
-g++ -std=c++11 main.cpp Mandelbrot.cpp Bitmap.cpp -o exec; 
-./exec
+g++ -std=c++11 src/main.cpp src/Mandelbrot.cpp src/Bitmap.cpp -I include -o bin/exec; 
+bin/exec
 
 */
