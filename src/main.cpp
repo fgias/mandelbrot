@@ -14,15 +14,19 @@ int main() {
 
     for (int y=0; y<HEIGHT; y++) {
         for (int x=0; x<WIDTH; x++) {
-            double xFractal = (x - WIDTH/2) * 2.0/WIDTH;
+            double xFractal = (x - WIDTH/2 - 200) * 2.0/HEIGHT;
             double yFractal = (y - HEIGHT/2) * 2.0/HEIGHT;
             
             int iters = Mandelbrot::getIterations(xFractal, yFractal);
             cout << iters << endl;
 
-            uint8_t red = ((double)iters/Mandelbrot::MAX_ITERATIONS * 256);
+            uint8_t color = ((double)iters/Mandelbrot::MAX_ITERATIONS * 256);
 
-            bitmap.setPixel(x, y, red, red, red);
+            uint8_t red = color * color;
+            uint8_t green = color;
+            uint8_t blue = color * color * color;
+
+            bitmap.setPixel(x, y, red, green, blue);
         }
     }
 

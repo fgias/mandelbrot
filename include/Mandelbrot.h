@@ -5,7 +5,7 @@ namespace fgias {
 
 class Mandelbrot {
 public:
-    static const int MAX_ITERATIONS = 100;
+    static const int MAX_ITERATIONS = 350;
 
 public:
     Mandelbrot();
