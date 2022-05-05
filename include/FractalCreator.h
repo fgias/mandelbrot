@@ -20,16 +20,18 @@ private:
     std::unique_ptr<int[]> _fractal;
     Bitmap _bitmap;
     ZoomList _zoomList;
-    
-public:
-    FractalCreator(int width, int height);
-    virtual ~FractalCreator();
 
+private:
     void calculateIterations();
     void calculateTotalIterations();
     void drawFractal();
-    void addZoom(const Zoom& zoom);
     void writeBitmap(std::string name);
+
+public:
+    FractalCreator(int width, int height);
+    virtual ~FractalCreator();
+    void addZoom(const Zoom& zoom);
+    void run(std::string name);
 };
 
 }
