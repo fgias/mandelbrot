@@ -8,6 +8,7 @@
 #include "ZoomList.h"
 #include "Mandelbrot.h"
 #include "Bitmap.h"
+#include "Screen.h"
 
 namespace fgias {
 
@@ -32,6 +33,8 @@ public:
     virtual ~FractalCreator();
     void addZoom(const Zoom& zoom);
     void run(std::string name);
+    
+    void drawFractalScreen(Screen screen);
 };
 
 }

@@ -1,0 +1,12 @@
+clear; 
+
+g++ -std=c++11 src/main.cpp -g -c -I /opt/local/include/SDL2 -I include -D_THREAD_SAFE -o build/main.o;
+g++ -std=c++11 src/FractalCreator.cpp -g -c -I /opt/local/include/SDL2 -I include -D_THREAD_SAFE -o build/FractalCreator.o;
+g++ -std=c++11 src/Mandelbrot.cpp -g -c -I /opt/local/include/SDL2 -I include -D_THREAD_SAFE -o build/Mandelbrot.o;
+g++ -std=c++11 src/ZoomList.cpp -g -c -I /opt/local/include/SDL2 -I include -D_THREAD_SAFE -o build/ZoomList.o;
+g++ -std=c++11 src/BitMap.cpp -g -c -I /opt/local/include/SDL2 -I include -D_THREAD_SAFE -o build/BitMap.o;
+g++ -std=c++11 src/Screen.cpp -g -c -I /opt/local/include/SDL2 -I include -D_THREAD_SAFE -o build/Screen.o;
+
+g++ build/*.o  -o bin/exec -lm -L /opt/local/lib -lSDL2;
+
+bin/exec

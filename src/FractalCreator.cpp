@@ -68,6 +68,29 @@ void FractalCreator::drawFractal() {
     }
 }
 
+void FractalCreator::drawFractalScreen(Screen screen) {
+    for (int y=0; y<_height; y++) {
+        for (int x=0; x<_width; x++) {
+            uint8_t red = 0;
+            uint8_t green = 0;
+            uint8_t blue = 0;
+
+            int iters = _fractal[y*_width + x];
+
+            if (iters != Mandelbrot::MAX_ITERATIONS) {
+                double hue = 0.;
+                for (int i=0; i<=iters; i++) {
+                    hue += ((double)_histogram[i])/_total;
+                }
+
+                green = pow(255, hue);
+            }
+
+            screen.setPixel(x, y, red, green, blue);
+        }
+    }
+}
+
 void FractalCreator::addZoom(const Zoom& zoom) {
     _zoomList.add(zoom);
 }
