@@ -8,6 +8,7 @@
 #include "ZoomList.h"
 #include "Mandelbrot.h"
 #include "Bitmap.h"
+#include "RGB.h"
 
 namespace fgias {
 
@@ -24,12 +25,16 @@ private:
 public:
     FractalCreator(int width, int height);
     virtual ~FractalCreator();
+    void addZoom(const Zoom& zoom);
 
+private:
     void calculateIterations();
     void calculateTotalIterations();
     void drawFractal();
-    void addZoom(const Zoom& zoom);
     void writeBitmap(std::string name);
+
+public:
+    void run(string name);
 };
 
 }

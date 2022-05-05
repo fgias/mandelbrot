@@ -2,6 +2,13 @@
 
 namespace fgias {
 
+void FractalCreator::run(std::string name) {
+    calculateIterations();
+    calculateTotalIterations();
+    drawFractal();
+    writeBitmap(name);
+}
+
 FractalCreator::FractalCreator(int width, int height): 
     _width(width), _height(height),
     _histogram(new int[Mandelbrot::MAX_ITERATIONS]{}), 
@@ -39,6 +46,11 @@ void FractalCreator::calculateTotalIterations() {
 }
 
 void FractalCreator::drawFractal() {
+
+    RGB startColor(0, 0, 20);
+    RGB endColor(255, 128, 74);
+    RGB colorDiff = endColor - startColor;
+
     for (int y=0; y<_height; y++) {
         for (int x=0; x<_width; x++) {
             uint8_t red = 0;
@@ -53,7 +65,10 @@ void FractalCreator::drawFractal() {
                     hue += ((double)_histogram[i])/_total;
                 }
 
-                green = pow(255, hue);
+                red = startColor._r + colorDiff._r * hue;
+                green = startColor._g + colorDiff._g * hue;
+                blue = startColor._b + colorDiff._b * hue;
+
             }
 
             _bitmap.setPixel(x, y, red, green, blue);

@@ -4,18 +4,12 @@ using namespace std;
 using namespace fgias;
 
 int main() {
-
-    int height=600;
-
+    
     FractalCreator fractalCreator(800, 600);
+    fractalCreator.addZoom(Zoom(295, 202, 0.1));
+    fractalCreator.addZoom(Zoom(312, 304, 0.1));
 
-    fractalCreator.addZoom(Zoom(295, height - 202, 0.1));
-    fractalCreator.addZoom(Zoom(312, height - 304, 0.1));
-
-    fractalCreator.calculateIterations();
-    fractalCreator.calculateTotalIterations();
-    fractalCreator.drawFractal();
-    fractalCreator.writeBitmap("test.bmp");
+    fractalCreator.run("test.bmp");
 
     cout << "Finished." << endl;
 
@@ -26,7 +20,9 @@ int main() {
 /* 
 
 clear; 
-g++ -std=c++11 src/main.cpp src/Mandelbrot.cpp src/Bitmap.cpp src/ZoomList.cpp src/FractalCreator.cpp -I include -o bin/exec; 
+g++ -std=c++11 src/main.cpp src/Mandelbrot.cpp src/Bitmap.cpp \
+src/ZoomList.cpp src/FractalCreator.cpp src/RGB.cpp \
+-I include -o bin/exec; 
 bin/exec
 
 */

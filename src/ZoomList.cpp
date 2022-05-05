@@ -10,7 +10,7 @@ void ZoomList::add(const Zoom& zoom) {
     zooms.push_back(zoom);
 
     _xCenter += (zoom._x - _width/2) * _scale;
-    _yCenter += (zoom._y - _height/2) * _scale;
+    _yCenter += -(zoom._y - _height/2) * _scale;
 
     _scale *= zoom._scale;
 };
