@@ -35,6 +35,7 @@ public:
     void addZoom(const Zoom& zoom);
     void run(std::string name);
     void run(Screen screen);
+    bool processEvents(Screen screen);
 };
 
 }

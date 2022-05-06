@@ -16,6 +16,23 @@ void FractalCreator::run(Screen screen) {
     screen.update();
 }
 
+bool FractalCreator::processEvents(Screen screen) {
+    SDL_Event event;
+
+    while (SDL_PollEvent(&event)) {
+        if (event.type == SDL_QUIT) {
+            return false;
+        };
+        if (event.type == SDL_MOUSEBUTTONDOWN) {
+            int xMouse = event.motion.x;
+            int yMouse = event.motion.y;
+            addZoom(Zoom(xMouse, Screen::SCREEN_HEIGHT-yMouse, 0.7));
+            run(screen);
+        };
+    };
+    return true;
+}
+
 FractalCreator::FractalCreator(int width, int height): 
     _width(width), _height(height),
     _histogram(new int[Mandelbrot::MAX_ITERATIONS]{}), 
@@ -23,7 +40,7 @@ FractalCreator::FractalCreator(int width, int height):
     _fractal(new int[_width*_height]{}),
     _bitmap(_width, _height),
     _zoomList(_width, _height) {
-        _zoomList.add(Zoom(_width/2, _height/2, 3.0/_width));
+        _zoomList.add(Zoom(_width/2, _height/2, 4.0/_width));
 }
 
 FractalCreator::~FractalCreator() {
