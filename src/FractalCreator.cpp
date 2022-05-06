@@ -9,6 +9,13 @@ void FractalCreator::run(std::string name) {
     writeBitmap(name);
 }
 
+void FractalCreator::run(Screen screen) {
+    calculateIterations();
+    calculateTotalIterations();
+    drawFractal(screen);
+    screen.update();
+}
+
 FractalCreator::FractalCreator(int width, int height): 
     _width(width), _height(height),
     _histogram(new int[Mandelbrot::MAX_ITERATIONS]{}), 
@@ -40,6 +47,7 @@ void FractalCreator::calculateIterations() {
 }
 
 void FractalCreator::calculateTotalIterations() {
+    _total = 0;
     for(int i = 0; i<Mandelbrot::MAX_ITERATIONS; i++) {
         _total += _histogram[i];
     }
@@ -68,7 +76,7 @@ void FractalCreator::drawFractal() {
     }
 }
 
-void FractalCreator::drawFractalScreen(Screen screen) {
+void FractalCreator::drawFractal(Screen screen) {
     for (int y=0; y<_height; y++) {
         for (int x=0; x<_width; x++) {
             uint8_t red = 0;

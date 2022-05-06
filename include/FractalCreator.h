@@ -26,6 +26,7 @@ private:
     void calculateIterations();
     void calculateTotalIterations();
     void drawFractal();
+    void drawFractal(Screen screen);
     void writeBitmap(std::string name);
 
 public:
@@ -33,8 +34,7 @@ public:
     virtual ~FractalCreator();
     void addZoom(const Zoom& zoom);
     void run(std::string name);
-    
-    void drawFractalScreen(Screen screen);
+    void run(Screen screen);
 };
 
 }
